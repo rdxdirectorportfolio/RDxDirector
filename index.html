@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDx Director | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Bangers&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #080808;
+            --orange: #FF8C00;
+            --purple: #8A2BE2;
+            --red: #FF0000;
+            --yellow: #FFD700;
+            --cyan: #00FFFF;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0; padding: 0; overflow-x: hidden;
+        }
+
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 5%; display: flex;
+            justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--purple);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif; font-size: 28px;
+            background: linear-gradient(to right, var(--orange), var(--yellow), var(--red));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .nav-links a { color: var(--yellow); text-decoration: none; margin-left: 20px; font-weight: bold; font-family: 'Orbitron'; font-size: 13px; }
+
+        /* BANNER SETTINGS */
+        .banner-container {
+            width: 100%; height: 600px; position: relative;
+            overflow: hidden; background: #000; display: flex;
+        }
+
+        .banner-track {
+            display: flex;
+            width: max-content;
+            /* 40 photos * 4s = 160s total duration */
+            animation: slider-40-photos 160s infinite ease-in-out;
+        }
+
+        .banner-track img {
+            width: 50vw; height: 600px;
+            object-fit: contain;
+            background: #000;
+            transition: transform 0.5s ease;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        /* Hover Effect: Zoom + White Outline */
+        .banner-track img:hover {
+            transform: scale(1.08);
+            outline: 5px solid white;
+            outline-offset: -10px;
+            z-index: 10;
+        }
+
+        /* 40 Photos Animation Logic (3s Hold, 1s Scroll) */
+        @keyframes slider-40-photos {
+            0%, 1.875% { transform: translateX(0); }
+            2.5%, 4.375% { transform: translateX(-50vw); }
+            5%, 6.875% { transform: translateX(-100vw); }
+            7.5%, 9.375% { transform: translateX(-150vw); }
+            10%, 11.875% { transform: translateX(-200vw); }
+            12.5%, 14.375% { transform: translateX(-250vw); }
+            15%, 16.875% { transform: translateX(-300vw); }
+            17.5%, 19.375% { transform: translateX(-350vw); }
+            20%, 21.875% { transform: translateX(-400vw); }
+            22.5%, 24.375% { transform: translateX(-450vw); }
+            25%, 26.875% { transform: translateX(-500vw); }
+            27.5%, 29.375% { transform: translateX(-550vw); }
+            30%, 31.875% { transform: translateX(-600vw); }
+            32.5%, 34.375% { transform: translateX(-650vw); }
+            35%, 36.875% { transform: translateX(-700vw); }
+            37.5%, 39.375% { transform: translateX(-750vw); }
+            40%, 41.875% { transform: translateX(-800vw); }
+            42.5%, 44.375% { transform: translateX(-850vw); }
+            45%, 46.875% { transform: translateX(-900vw); }
+            47.5%, 49.375% { transform: translateX(-950vw); }
+            50%, 51.875% { transform: translateX(-1000vw); }
+            52.5%, 54.375% { transform: translateX(-1050vw); }
+            55%, 56.875% { transform: translateX(-1100vw); }
+            57.5%, 59.375% { transform: translateX(-1150vw); }
+            60%, 61.875% { transform: translateX(-1200vw); }
+            62.5%, 64.375% { transform: translateX(-1250vw); }
+            65%, 66.875% { transform: translateX(-1300vw); }
+            67.5%, 69.375% { transform: translateX(-1350vw); }
+            70%, 71.875% { transform: translateX(-1400vw); }
+            72.5%, 74.375% { transform: translateX(-1450vw); }
+            75%, 76.875% { transform: translateX(-1500vw); }
+            77.5%, 79.375% { transform: translateX(-1550vw); }
+            80%, 81.875% { transform: translateX(-1600vw); }
+            82.5%, 84.375% { transform: translateX(-1650vw); }
+            85%, 86.875% { transform: translateX(-1700vw); }
+            87.5%, 89.375% { transform: translateX(-1750vw); }
+            90%, 91.875% { transform: translateX(-1800vw); }
+            92.5%, 94.375% { transform: translateX(-1850vw); }
+            95%, 96.875% { transform: translateX(-1900vw); }
+            97.5%, 99.375% { transform: translateX(-1950vw); }
+            100% { transform: translateX(-2000vw); }
+        }
+
+        .overlay-left {
+            position: absolute; left: 0; top: 0;
+            width: 50vw; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(2px);
+            z-index: 5; pointer-events: none;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .banner-text {
+            font-family: 'Bangers', cursive; font-size: 80px;
+            color: var(--yellow); text-shadow: 6px 6px var(--red);
+            text-align: center;
+        }
+
+        /* GRID SYSTEM - 3 PER LINE ON DESKTOP */
+        .grid-container {
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px; padding: 50px 5%;
+        }
+
+        .card {
+            position: relative; background: #111; border-radius: 15px;
+            overflow: hidden; border: 1px solid #222; transition: 0.4s;
+            text-decoration: none;
+        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px var(--purple); border-color: white; }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        
+        .card .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75); display: flex;
+            justify-content: center; align-items: center; opacity: 0; transition: 0.4s;
+        }
+        .card:hover .overlay { opacity: 1; }
+        .overlay span { font-family: 'Orbitron'; font-size: 18px; color: white; border: 2px solid var(--cyan); padding: 8px 16px; }
+        .card-title { padding: 15px; text-align: center; font-family: 'Orbitron'; font-size: 14px; color: white; }
+
+        /* FOOTER */
+        .main-footer {
+            background: #000; border-top: 4px solid var(--purple);
+            padding: 40px 5%; display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center; gap: 20px;
+        }
+
+        .footer-left { text-align: left; }
+        .footer-center { text-align: center; }
+        .footer-right { text-align: right; }
+
+        .footer-left h3, .footer-center h2 { font-family: 'Orbitron'; margin-bottom: 10px; font-size: 18px; }
+        .footer-left p { color: #aaa; font-size: 13px; line-height: 1.6; }
+        .contact-links a { color: var(--yellow); text-decoration: none; font-weight: bold; margin: 0 10px; font-size: 14px; }
+        
+        .contact-footer-btn {
+            background: linear-gradient(to right, var(--red), var(--orange));
+            color: white; padding: 12px 25px; text-decoration: none;
+            border-radius: 50px; font-weight: bold; font-family: 'Orbitron';
+            display: inline-block; font-size: 12px;
+        }
+
+        .copy { grid-column: 1 / span 3; text-align: center; color: #444; font-size: 11px; margin-top: 30px; }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 900px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .grid-container { grid-template-columns: 1fr; }
+            .main-footer { grid-template-columns: 1fr; text-align: center; }
+            .banner-text { font-size: 40px; }
+            .banner-container { height: 400px; }
+            .banner-track img { height: 400px; width: 100vw; }
+            .overlay-left { width: 100vw; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">RDx Director</div>
+    <div class="nav-links">
+        <a href="mailto:rdx@gmail.com">GMAIL</a>
+        <a href="tel:8866691509">CALL</a>
+        <a href="https://wa.me/8866691509">WHATSAPP</a>
+    </div>
+</header>
+
+<div class="banner-container">
+    <div class="overlay-left">
+        <div class="banner-text">MY JOURNEY</div>
+    </div>
+    <div class="banner-track">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1Lylg4PRNCudtqSPQT6-f5h5_4F9iDiVB">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1kVm3RfXYJwf8PNiFgNNi6Y_niy6MmIg3">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1ps0Fe_cw_LuGiH2BajrT1-cSWTdTI4Bc">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1_BCvLJZChJNp9LHDzA30VemJmZdQR_aS">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1GM72RmEiADn_RrJDtYhuIuV3V6dVgnzb">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=16Yo5rbN29YR6uc2tXHaqsI5lzEac20xR">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1eyKqPhC6TmD3_Z4BfnPbDhABdTDlqUl-">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1AMVni9pejTO57kN7o8vFDpIhqmVlgEv7">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1-T_BLJ6TUSSQL0H8OKWLqwepAZ4vb856">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1_gv7MPuh2YtqIJ8LSeGm0tnXBEoK53Tz">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1FG4RgyhBZlw5jAhbhCZCXJKLc3nmztup">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1bKvPlXdoE7OvSV0RbDk0JKlocEa665o0">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1cdaTMowhWKSgQfL_qdq2ZHB8MnhltS8X">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1B9jGbMUhxWmTv6ESvQLJZovMkxI_LEJZ">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1up4krXT9ht8GBVQOQIx95oL2QX9ULK6U">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=11AB-Y9TsygZl9NhP-yBUhRfooSQFNjL6">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1KtX5IpuncPCSGVBzO_hVS0xB3KWwPPjL">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1v_7egYzIuUJbvcICimwzAojbCkJN5sPX">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1sVFdsTjtNNopgovU-fpI_lP4xWqQUp1s">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1K-yziRhak1X5tkg4clOdviL4FK8qLXz9">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=14uPu729vCWpfqZlhFmZria8FRnt_Icxv">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1BuL4chq3S65FbaASnHNKc-mB3Y06KggJ">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1p_4DYHND7sqFOkzMLJdvDviFAatGIRXA">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1Q2Y6v8TIZ9PFaSXT0cuQb2rnFSkn4Oa4">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1mwp3jC4J_G86SEqjJmVjSDUxkcYdRiaE">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1xZvzMD039SeB7cH5neK9Q7AK7D8spmsB">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1D8KoHBudmM43VQnsCmkXPyzvgxyk-h0_">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1KF5BcMoOFX-myi6gpelgDk56w3sL_UUW">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1vayqpFPffJtpOLhqZ3c7ZWwZpKx91zj8">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1KAUM8Sm6seAYXeVMxLA5kvVm1HlxpCWZ">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1sghpuYfyl61Lw2MGSfFH-kIXZDbIkYtp">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1KnluG6hzIe_kgB6nKdjzRHKN-UVgFsTU">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=19fDj6BUC516y3AWNHu2lpj2t22orcbrS">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1a9Yalw51txPBOcbJckX4Khd37s2GpTbs">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=16dRwbuZzX4UvJavgoW9WmR2pFTN9pFMR">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=19aBJMDFOueh_gwQslB6kk8OylM1RfxR4">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1A_9yp3h5hcVOEJOLS7T6pdP3Z28j25hu">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1-T_BLJ6TUSSQL0H8OKWLqwepAZ4vb856">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1eyKqPhC6TmD3_Z4BfnPbDhABdTDlqUl-">
+        <img loading="lazy" src="https://drive.google.com/thumbnail?id=1cdaTMowhWKSgQfL_qdq2ZHB8MnhltS8X">
+    </div>
+</div>
+
+<div class="grid-container">
+    <a href="https://drive.google.com/drive/folders/1ARwFhLmQCe85h4OoGfUZLqaODFFT2-sM" target="_blank" class="card">
+        <img src="https://drive.google.com/thumbnail?id=1A_9yp3h5hcVOEJOLS7T6pdP3Z28j25hu">
+        <div class="overlay"><span>OPEN</span></div>
+        <div class="card-title" style="color:var(--orange)">1. BTS VIDEO</div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/12MgmDWbnct45CCgNcYS6ojWTDgBq5MHA" target="_blank" class="card">
+        <img src="https://drive.google.com/thumbnail?id=11AB-Y9TsygZl9NhP-yBUhRfooSQFNjL6">
+        <div class="overlay"><span>OPEN</span></div>
+        <div class="card-title" style="color:var(--purple)">2. SHORT FILM</div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1Ad6aToBde65JVDkXAzegu2yxZv4u-KgM" target="_blank" class="card">
+        <img src="https://drive.google.com/thumbnail?id=1a9Yalw51txPBOcbJckX4Khd37s2GpTbs">
+        <div class="overlay"><span>OPEN</span></div>
+        <div class="card-title" style="color:var(--red)">3. SHORTS</div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/10xjxHZ9C4q6CzjthuFvNmlAygOVSf4fp" target="_blank" class="card">
+        <img src="https://drive.google.com/thumbnail?id=1_m4NPIMk09Ud1wIdR4Xtz6vH12BzAKhk">
+        <div class="overlay"><span>OPEN</span></div>
+        <div class="card-title" style="color:var(--yellow)">4. SHOOT PLANNING</div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/18CWSxiaYgwNvw9AL0Py-Cop0U4SRe7ZY" target="_blank" class="card">
+        <img src="https://drive.google.com/thumbnail?id=19fDj6BUC516y3AWNHu2lpj2t22orcbrS">
+        <div class="overlay"><span>OPEN</span></div>
+        <div class="card-title" style="color:var(--cyan)">5. OUTDOOR PHOTOS</div>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1EhKVXBy2a1qRi-_MdYiSsjDENbhH74Bx" target="_blank" class="card">
+        <img src="https://drive.google.com/thumbnail?id=1sghpuYfyl61Lw2MGSfFH-kIXZDbIkYtp">
+        <div class="overlay"><span>OPEN</span></div>
+        <div class="card-title" style="color:var(--orange)">6. MODEL SHOOT</div>
+    </a>
+</div>
+
+<footer class="main-footer">
+    <div class="footer-left">
+        <h3 style="color:var(--cyan)">ABOUT ME</h3>
+        <p>Filmmaker and Director Rahul Devganiya. Creating cinematic experiences.</p>
+    </div>
+    <div class="footer-center">
+        <h2>Rahul Devganiya</h2>
+        <div class="contact-links">
+            <a href="tel:8866691509">CALL</a>
+            <a href="https://wa.me/8866691509">WHATSAPP</a>
+        </div>
+    </div>
+    <div class="footer-right">
+        <a href="https://drive.google.com/file/d/1_0CGGu6hwa6b6XWvIP_c1wZsnh3luuYB/view?usp=drive_link" target="_blank" class="contact-footer-btn">HIRE ME NOW (CV)</a>
+    </div>
+    <div class="copy">© 2018 RDx Director. All Rights Reserved.</div>
+</footer>
+
+</body>
+</html>
